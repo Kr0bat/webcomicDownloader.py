@@ -1,2 +1,2 @@
 # webcomicDownloader.py
-Will automatically download webcomics from several supported websites
+Automatically download webcomics from several supported websites
