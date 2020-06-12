@@ -1,0 +1,5 @@
+Everything:
+Webcomic Downloading
+    Need to make functions to support downloading images from various sites
+User Config
+  Users should be able to select which sites they want to download images from
