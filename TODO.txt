@@ -1,5 +1,10 @@
 Everything:
 Webcomic Downloading
     Need to make functions to support downloading images from various sites
+    Images must be downloaded into folders for each site
+    Images must be given proper titles
+    Images must be unique
 User Config
-  Users should be able to select which sites they want to download images from
+    Users should be able to select which sites they want to download images from
+    Running with no arguments creates/modifies config file
+    Running with config file will auto check websites
