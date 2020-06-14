@@ -1,5 +1,6 @@
 # downloader.py
 # Provides methods for downloading webcomics
+# This line is pointless
 import requests, bs4
 from os.path import basename
 from pathlib import Path
