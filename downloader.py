@@ -2,7 +2,6 @@
 # Provides methods for downloading webcomics
 # This line is pointless
 import requests, bs4
-from os.path import basename
 from pathlib import Path
 
 def xkcd():
@@ -21,5 +20,19 @@ def xkcd():
         imageFile.write(chunk)
     imageFile.close()
     
-xkcd()
+def lovenstein():
+    siteURL = "https://www.mrlovenstein.com"
+    site = requests.get(siteURL, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"})
+    site.raise_for_status()
+    siteHTML = bs4.BeautifulSoup(site.text, 'html.parser')
+    imageURL = siteHTML.select('meta[property="og:image"]')[0].get('content')
+    title = siteHTML.select('meta[property="og:title"]')[0].get('content')
+    
+    image = requests.get(imageURL)
+    image.raise_for_status()
+    imageFile = open(f'{title}{Path(imageURL).suffix}', 'wb')
+    
+    for chunk in image.iter_content(100000):
+        imageFile.write(chunk)
+    imageFile.close()
 
