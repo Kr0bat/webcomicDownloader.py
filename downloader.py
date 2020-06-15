@@ -45,6 +45,3 @@ def lovenstein():
     for chunk in image.iter_content(100000):
         imageFile.write(chunk)
     imageFile.close()
-
-xkcd()
-lovenstein()
