@@ -1,7 +1,7 @@
 # downloader.py
 # Provides methods for downloading webcomics
-# This line is pointless
-import requests, bs4, re
+# If the download fails, I should go on to the next one and try again later
+import requests, bs4, re, time
 from pathlib import Path
 
 def xkcd():
@@ -13,12 +13,12 @@ def xkcd():
     title = siteHTML.select('meta[property="og:title"]')[0].get('content')
     title = f'{title}{Path(imageURL).suffix}'
     
-    if (Path(title)).is_file():
+    if (Path('XKCD') / title).is_file():
         raise FileExistsError
     
     image = requests.get(imageURL)
     image.raise_for_status()
-    imageFile = open(title, 'wb')
+    imageFile = open(Path('XKCD') / title, 'wb')
     
     for chunk in image.iter_content(100000):
         imageFile.write(chunk)
@@ -35,12 +35,12 @@ def lovenstein():
     title = nameFormat.sub('', title)
     title = f'{title}{Path(imageURL).suffix}'
     
-    if (Path(title)).is_file():
+    if (Path('Lovenstein') / title).is_file():
         raise FileExistsError
     
     image = requests.get(imageURL)
     image.raise_for_status()
-    imageFile = open(title, 'wb')
+    imageFile = open(Path('Lovenstein') / title, 'wb')
     
     for chunk in image.iter_content(100000):
         imageFile.write(chunk)
